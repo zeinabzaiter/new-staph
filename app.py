@@ -27,10 +27,12 @@ max_week = pd.to_datetime(max_week)
 # Sidebar filters
 with st.sidebar:
     st.header("Filtres")
+
+    # 🔧 Calcule les bornes de semaine
     min_week = df["Week"].min()
     max_week = df["Week"].max()
 
-    # 🛠 Correction ici :
+    # ✅ Convertir au bon format ici, après définition
     min_week = pd.to_datetime(min_week)
     max_week = pd.to_datetime(max_week)
 
@@ -39,7 +41,7 @@ with st.sidebar:
         min_value=min_week,
         max_value=max_week,
         value=(min_week, max_week),
-        format="%Y-%m-%d"
+        format="YYYY-MM-DD"
     )
 
     selected_phenotypes = st.multiselect(
@@ -47,6 +49,7 @@ with st.sidebar:
         options=["MRSA", "VRSA", "Wild", "others"],
         default=["MRSA", "VRSA", "Wild"]
     )
+
 
 
 # Filtered data
