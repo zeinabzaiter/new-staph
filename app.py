@@ -15,7 +15,7 @@ st.title("Evolution hebdomadaire des phénotypes de Staphylococcus aureus")
 @st.cache_data
 def load_data():
     df = pd.read_csv("weekly_staph_phenotypes.csv")
-    df["Week"] = pd.to_datetime(df["Week"])
+    df["Week"] = pd.to_datetime(df["Week"]).dt.date  # convertir en date uniquement
     return df
 
 df = load_data()
@@ -28,10 +28,7 @@ with st.sidebar:
     min_week = df["Week"].min()
     max_week = df["Week"].max()
 
-    # ✅ Convertir au bon format ici
-    min_week = pd.to_datetime(min_week)
-    max_week = pd.to_datetime(max_week)
-
+    # ✅ Slider avec types homogènes : datetime.date
     week_range = st.slider(
         "Période",
         min_value=min_week,
