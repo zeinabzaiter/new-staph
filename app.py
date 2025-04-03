@@ -27,6 +27,10 @@ with st.sidebar:
     min_week = df["Week"].min()
     max_week = df["Week"].max()
 
+    # 🛠 Correction ici :
+    min_week = pd.to_datetime(min_week)
+    max_week = pd.to_datetime(max_week)
+
     week_range = st.slider(
         "Période",
         min_value=min_week,
@@ -40,6 +44,7 @@ with st.sidebar:
         options=["MRSA", "VRSA", "Wild", "others"],
         default=["MRSA", "VRSA", "Wild"]
     )
+
 
 # Filtered data
 df_filtered = df[(df["Week"] >= week_range[0]) & (df["Week"] <= week_range[1])]
