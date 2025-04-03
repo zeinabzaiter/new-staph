@@ -18,6 +18,8 @@ def load_data():
     df = pd.read_csv("weekly_staph_phenotypes.csv")
     df["Week"] = pd.to_datetime(df["Week"])
     return df
+    min_week = pd.to_datetime(min_week)
+
 
 df = load_data()
 min_week = pd.to_datetime(min_week)
