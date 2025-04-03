@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -18,13 +17,8 @@ def load_data():
     df = pd.read_csv("weekly_staph_phenotypes.csv")
     df["Week"] = pd.to_datetime(df["Week"])
     return df
-    min_week = pd.to_datetime(min_week)
-
 
 df = load_data()
-min_week = pd.to_datetime(min_week)
-max_week = pd.to_datetime(max_week)
-
 
 # Sidebar filters
 with st.sidebar:
@@ -34,7 +28,7 @@ with st.sidebar:
     min_week = df["Week"].min()
     max_week = df["Week"].max()
 
-    # ✅ Convertir au bon format ici, après définition
+    # ✅ Convertir au bon format ici
     min_week = pd.to_datetime(min_week)
     max_week = pd.to_datetime(max_week)
 
@@ -51,8 +45,6 @@ with st.sidebar:
         options=["MRSA", "VRSA", "Wild", "others"],
         default=["MRSA", "VRSA", "Wild"]
     )
-
-
 
 # Filtered data
 df_filtered = df[(df["Week"] >= week_range[0]) & (df["Week"] <= week_range[1])]
@@ -100,3 +92,4 @@ st.subheader("Données brutes")
 st.dataframe(df_filtered, use_container_width=True)
 
 st.caption("Dashboard créé avec ❤️ par ChatGPT pour l'analyse microbiologique")
+
