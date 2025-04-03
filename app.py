@@ -20,6 +20,9 @@ def load_data():
     return df
 
 df = load_data()
+min_week = pd.to_datetime(min_week)
+max_week = pd.to_datetime(max_week)
+
 
 # Sidebar filters
 with st.sidebar:
